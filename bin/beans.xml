@@ -7,6 +7,37 @@
    http://www.springframework.org/schema/context
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
    
+   <bean id="account" class="com.java.ess.daythird.Account">
+   <property name="acId" value="1"></property>
+   <property name="acName" value="sachdeva"></property>
+   <property name="balance" value="100000"></property>
+   </bean>
+   
+   <bean id="accservice" class="com.java.ess.daythird.AccountService"></bean>
+   
+   <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+   <property name="proxyInterfaces">
+   <list>
+   <value>com.java.ess.daythird.FilterMethod</value>
+   </list>
+   </property>
+   
+   <property name="interceptorNames">
+   <list>
+   <value>accservice</value>
+   </list>
+   </property>
+   
+   <property name="target">
+   <ref bean="account"></ref>
+   </property>
+   
+   </bean>
+   
+   
+   
+   
+   
     <!-- <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/accountdata"></property>
@@ -25,13 +56,13 @@
 		<property name="dataSource" ref="ds"></property>
 	</bean> -->
    
-   <bean id="emp" class="com.java.ess.Employee">
+  <!--  <bean id="emp" class="com.java.ess.Employee">
    <property name="empid" value="1"></property>
    <property name="empname" value="himanshu"></property>
    <property name="emppost" value="dev"></property>
    </bean>
    
    <bean id="postprocessor" class="com.java.ess.EmployeeBean"></bean>
-   <bean id="beanpostprocessor" class="com.java.ess.EmployeeBean"></bean>
+   <bean id="beanpostprocessor" class="com.java.ess.EmployeeBean"></bean> -->
    
    </beans>
